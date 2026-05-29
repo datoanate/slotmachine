@@ -549,6 +549,14 @@ document.getElementById('leverHousing').addEventListener('click', e=>{
   spin();
 });
 document.getElementById('slotMachine').addEventListener('click', spin);
+
+// Post height to parent so iframe hugs content
+function postHeight(){
+  const h = document.getElementById('slotMachine').getBoundingClientRect().height;
+  window.parent.postMessage({type:'SLOT_HEIGHT', height: Math.ceil(h) + 24}, '*');
+}
+window.addEventListener('load', postHeight);
+window.addEventListener('resize', postHeight);
 </script>
 </body>
 </html>
